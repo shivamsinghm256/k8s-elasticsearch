@@ -66,6 +66,10 @@ Once Filebeat is deployed, you can set up its integration inside Kibana to view 
 4. Set the timestamp field to @timestamp, then click “Create”.
 5. Now go to “Discover”. You should see logs coming in from your Kubernetes pods via Filebeat.
 
+
+## 🔁 Cleanup
+To delete cluster (Created via eksctl): ```eksctl delete cluster --name <cluster-name> --region <region>```
+
 ## 📌 Notes
 	•	update_kibana_ip.go is a helper script written in Go to auto-patch the Elasticsearch IP into the Kibana config.
 	•	Filebeat is configured to collect logs from all running pods in the cluster and forward them to Elasticsearch.
