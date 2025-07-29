@@ -1,4 +1,4 @@
-# Elasticsearch + Kibana + Filebeat on Kubernetes
+# Elasticsearch + Kibana + Filebeat on Amazon EKS
 
 This project sets up an Elasticsearch logging stack on Kubernetes, consisting of:
 
