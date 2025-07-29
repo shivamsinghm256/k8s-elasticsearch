@@ -12,8 +12,10 @@ All resources are deployed under the `aa-upwork` namespace.
 
 ## 🧱 Prerequisites
 
-- Kubernetes cluster (e.g., Minikube, EKS, GKE, etc.)
-- `kubectl` configured and pointing to your cluster
+- AWS CLI configured
+- eksctl installed
+- kubectl installed
+- Go (for script execution)
 - Basic knowledge of YAML and Kubernetes concepts
 
 ---
@@ -30,14 +32,16 @@ k8s-elasticsearch
 ```
 ## 🚀 Setup Instructions
 
-1. Create the Namespace: ```kubectl create namespace aa-upwork```
-2. Deploy Elasticsearch: ```kubectl create -f elastic.yaml``` </br>
+1. **EKS Cluster Setup:** </br>
+	Create an EKS cluster using eksctl: ```eksctl create cluster --name K8s-cluster --region us-east-1 --nodes 2 --node-type t3.medium```
+2. **Create the Namespace:** ```kubectl create namespace aa-upwork```
+3. **Deploy Elasticsearch:** ```kubectl create -f elastic.yaml``` </br>
    Wait for the pod to be ready: ```kubectl get pods -n aa-upwork```
-3. Update Kibana Config with Elasticsearch Pod IP </br>
+4. **Update Kibana Config with Elasticsearch Pod IP** </br>
     Run the Go script to inject the pod IP into the Kibana config: ```go run helper.go kibana.yaml```
    > This will modify 2-kibana.yaml in-place, replacing <IP> with the actual IP of the elasticsearch-0 pod.
-4. Deploy Kibana: ```kubectl create -f kibana.yaml```
-6. Deploy Filebeat: ```kubectl create -f filebeat.yaml```
+5. **Deploy Kibana:** ```kubectl create -f kibana.yaml```
+6. **Deploy Filebeat:** ```kubectl create -f filebeat.yaml```
 
 ## 🌐 Access Kibana
 
